@@ -26,12 +26,25 @@ it("can add a new todo", function() {
 
   addTodo(todoList);
 
-  //expect to see todo
-  const removeButton = todoList.getByText("X");
-  expect(removeButton).toBeInDocument();
+  // expect form to clear and todo to be on the page
+  expect(todoList.getByLabelText("Task to Complete")).toHaveValue("");
+  expect(todoList.getByText("clean bathroom")).toBeInTheDocument();
+  expect(todoList.getByText("Edit")).toBeInTheDocument();
+  expect(todoList.getByText("X")).toBeInTheDocument();
+});
 
-  // expect form to be empty
-  expect(todoList.getAllByDisplayValue(""));
+it("can edit a todo", function() {
+  const todoList = render(<TodoList />);
+  addTodo(todoList);
+
+  fireEvent.click(todoList.getByText("Edit"));
+  const editInput = todoList.getByDisplayValue("clean bathroom");
+  fireEvent.change(editInput, { target: { value: "sleep" }});
+  fireEvent.click(todoList.getByText("Update!"));
+
+  // expect only edited todo to appear
+  expect(todoList.getByText("sleep")).toBeInTheDocument();
+  expect(todoList.queryByText("clean bathroom")).not.toBeInTheDocument();
 });
 
 it("can remove a todo", function() {
