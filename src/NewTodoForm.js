@@ -1,5 +1,5 @@
 import React from "react";
-import Todo from './Todo';
+import uuid from "uuid/v4";
 
 const NewTodoForm = () => {
 
