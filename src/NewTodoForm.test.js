@@ -4,9 +4,9 @@ import NewTodoForm from "./NewTodoForm";
 
 it("renders without crashing", function() {
     render(<NewTodoForm />);
-  });
+});
   
-  it("matches snapshot", function() {
+it("matches snapshot", function() {
     const { asFragment } = render(<NewTodoForm />);
     expect(asFragment()).toMatchSnapshot();
-  });
+});
