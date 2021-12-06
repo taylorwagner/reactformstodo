@@ -51,9 +51,8 @@ it("can remove a todo", function() {
   const todoList = render(<TodoList />);
   addTodo(todoList);
 
-  const removeButton = todoList.getByText("X");
+  fireEvent.click(todoList.getByText("X"));
 
-  // click the remove button and todo should be gone
-  fireEvent.click(removeButton);
-  expect(removeButton).not.toBeInDocument();
+  // expect todo to be gone
+  expect(todoList.queryByText("clean bathroom")).not.toBeInTheDocument();
 });
