@@ -1,6 +1,7 @@
 import React from "react";
 
-const Todo = ({ task }) => {
+const Todo = ({ id, task }) => {
+    const remove = () => handleRemove(id);
     return (
         <div>
             { task }
