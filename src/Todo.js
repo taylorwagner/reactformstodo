@@ -2,7 +2,10 @@ import React from "react";
 
 const Todo = ({ task }) => {
     return (
-        <div>{ task }</div>
+        <div>
+            { task }
+            <button onClick={remove}>X</button>
+        </div>
     )
 }
 
